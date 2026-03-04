@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コグフレ（Cognition Frame）- 心の動きを可視化する教育プログラム</title>
+    <meta name="description" content="SNSトラブルや友人関係の悩みを、客観的な4つのフレーム（S・R・C・G）で解決に導く。教育ネットの革新的プログラム「コグフレ」公式サイト。">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+JP:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS (External stylesheet for cleaner code) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Dynamic CSS for GitHub specific elements (if any) -->
+    <style>
+        /* Extra styles for better visual polish */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: var(--radius-md);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, #fff5f8, #f0f7ff);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(209, 90, 132, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .floating-cards {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1024px) {
+            .floating-cards {
+                display: none;
+            }
+
+            .hero {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        /* Problem Icons Custom Colors */
+        .problem-card i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--primary);
+        }
+
+        /* Concept Card Styles (Flex with animations) */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .concept-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border-top: 6px solid var(--primary);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .concept-card h3 {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+            font-weight: 800;
+        }
+
+        .concept-card .symbol {
+            font-size: 3rem;
+            font-weight: 900;
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .concept-card .icon-circle {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .concept-card:hover .icon-circle {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .concept-card:hover .text-muted {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Feature section side-by-side */
+        .feature-split {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+            margin-top: var(--space-lg);
+        }
+
+        .feature-split>div {
+            flex: 1;
+        }
+
+        @media (max-width: 900px) {
+            .feature-split {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* CTA boxes for conversion */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="container" style="padding: 2rem 0; display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo">
+            <img src="https://edu-net.co.jp/wysiwyg/image/download/1/673/medium" alt="コグフレ" style="height: 50px;">
+        </div>
+        <div class="nav-links">
+            <a href="#about" class="btn btn-outline" style="padding: 0.8rem 2rem; font-size: 0.9rem;">お問い合わせ</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div style="max-width: 650px;">
+                <h1 class="display-title">「あの子が悪い」で<br>終わらせない。</h1>
+                <p style="font-size: 1.4rem; color: var(--text-muted); margin-bottom: 2.5rem; font-weight: 600;">
+                    心の動きを可視化する新機軸の教育プログラム「コグフレ」。<br>客観的な4つのフレームワークで、子どもの主体的な解決力を育みます。
+                </p>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#about" class="btn btn-primary">コグフレについて詳しく知る</a>
+                    <a href="#cfr" class="btn btn-outline">ツールを見る</a>
+                </div>
+            </div>
+            <!-- Floating Visual items -->
+            <div class="floating-cards">
+                <div class="glass-card" style="padding: 20px; box-shadow: var(--shadow-md); transform: rotate(-2deg);">
+                    <img src="image/cogframe_concept_diagram.png" alt="S-R-C-G"
+                        style="border-radius: var(--radius-sm);">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section class="section-padding bg-soft">
+        <div class="container text-center">
+            <h2 class="section-title reveal">今、こんな教育課題はありませんか？</h2>
+            <p class="section-subtitle reveal">性格を責め合っても解決しない。必要なのは「分析の視点」です。</p>
+
+            <div class="concept-grid">
+                <div class="glass-card reveal" style="padding: 3.5rem 2rem; border-bottom: 5px solid var(--primary);">
+                    <i style="font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block;">⚠️</i>
+                    <h3 class="mb-20" style="font-weight: 800;">SNSでのトラブル</h3>
+                    <p class="text-muted">顔の見えない環境でのやり取り。意図せず相手を傷つけ、修復が難しいトラブルが急増しています。</p>
+                </div>
+                <div class="glass-card reveal" style="padding: 3.5rem 2rem; border-bottom: 5px solid var(--primary);">
+                    <i style="font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block;">❌</i>
+                    <h3 class="mb-20" style="font-weight: 800;">人格否定の応酬</h3>
+                    <p class="text-muted">「あいつは性格が悪い」と人格を否定し合い、行為の本質的な解決が置き去りになっています。</p>
+                </div>
+                <div class="glass-card reveal" style="padding: 3.5rem 2rem; border-bottom: 5px solid var(--primary);">
+                    <i style="font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block;">💬</i>
+                    <h3 class="mb-20" style="font-weight: 800;">指導の具体性不足</h3>
+                    <p class="text-muted">「仲良く」と言うだけでは響かない。子どもたちが納得できる論理的なアプローチが必要です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title reveal">認知を規定する「4つのフレーム」</h2>
+                <p class="section-subtitle reveal">認知（捉え方）が決まるプロセスを可視化し、見えない心の動きを分析可能な対象に変えていきます。</p>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card reveal">
+                    <span class="icon-circle">S</span>
+                    <h3>State</h3>
+                    <p class="mb-20"><strong>状態：その時の自分</strong></p>
+                    <p class="text-muted">疲労、寝不足、焦り、欲求。自分のコンディションが、世界の捉え方を変えています。</p>
+                </div>
+                <div class="concept-card reveal">
+                    <span class="icon-circle">R</span>
+                    <h3>Relation</h3>
+                    <p class="mb-20"><strong>関係性：相手との距離</strong></p>
+                    <p class="text-muted">相手が親友か、苦手な子か。相手との心の距離が、言葉の意味を決定づけます。</p>
+                </div>
+                <div class="concept-card reveal">
+                    <span class="icon-circle">C</span>
+                    <h3>Context</h3>
+                    <p class="mb-20"><strong>文脈：場と流れ</strong></p>
+                    <p class="text-muted">SNS、深夜、教室。場所や手段という文脈が、コミュニケーションの形を変えます。</p>
+                </div>
+                <div class="concept-card reveal">
+                    <span class="icon-circle">G</span>
+                    <h3>Goal</h3>
+                    <p class="mb-20"><strong>目的：本当のねらい</strong></p>
+                    <p class="text-muted">仲良くしたい、論破したい。その瞬間の真の意図が、一言の重みを左右します。</p>
+                </div>
+            </div>
+
+            <div class="glass-card reveal mt-40"
+                style="padding: 40px; text-align: center; border-radius: var(--radius-lg); background: linear-gradient(135deg, #fff 0%, #fdf2f6 100%);">
+                <p style="font-size: 1.4rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 1.5rem;">
+                    性格を責めるのではなく、フレームを読み解く。
+                </p>
+                <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 2;">
+                    「条件（フレーム）が揃えば起きてしまう現象」として分析することで、<br>
+                    子どもたちは人格否定という袋小路から抜け出し、<br>
+                    <strong>「次はどのフレームを変えれば、事故を防げるか」</strong>を自律的に考え始めます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section id="cfr" class="section-padding bg-soft">
+        <div class="container">
+            <div class="feature-split">
+                <div class="reveal">
+                    <img src="https://edu-net.co.jp/wysiwyg/image/download/1/672/medium" alt="CFRカード"
+                        style="height: 60px; margin-bottom: 2rem;">
+                    <h2 class="section-title">対話を促進するツール<br>「CFRカード」</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8;">
+                        抽象的なフレームを具体的に選べる「カード」としてパッケージ化。自分のフレームをカードで選ぶことで、内面を「外に出して」冷静に話し合える効果を生みます。
+                    </p>
+                    <ul class="check-list" style="font-weight: 600; font-size: 1.1rem; color: var(--text-main);">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 15px;">
+                            <span style="color: var(--primary); font-size: 1.5rem;">✔</span> 自分の感情を客観的に捉えられる
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 15px;">
+                            <span style="color: var(--primary); font-size: 1.5rem;">✔</span> 相手のフレームを想像するきっかけになる
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 15px;">
+                            <span style="color: var(--primary); font-size: 1.5rem;">✔</span> 「次はどのフレームを変えるか」を議論できる
+                        </li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <div
+                        style="background: white; padding: 15px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);">
+                        <img src="image/cogframe_classroom_discussion.png" alt="教室内での対話"
+                            style="border-radius: var(--radius-sm); width: 100%;">
+                        <p class="text-center text-muted mt-10"><small>※CFRカードを使って対話する生徒たちのイメージ</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding"
+        style="background: linear-gradient(135deg, var(--primary-dark) 0%, #800040 100%); color: white;">
+        <div class="container">
+            <div class="text-center mb-20">
+                <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem;">まずは詳しい資料をご覧ください</h2>
+                <p style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 4rem;">教育現場への導入ガイドや活用チラシを公開しています。</p>
+            </div>
+
+            <div class="cta-grid">
+                <div class="glass-card reveal"
+                    style="padding: 50px 30px; text-align: center; background: rgba(255,255,255,0.1);">
+                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">資料ダウンロード</h3>
+                    <p style="margin-bottom: 2.5rem; opacity: 0.9;">CFRカード活用のヒントが詰まった<br>PDF資料を公開しています。</p>
+                    <a href="docs/CFRカード_チラシ_ver1.1.pdf" class="btn btn-primary"
+                        style="background: white; color: var(--primary-dark);" target="_blank">PDFをダウンロード</a>
+                </div>
+                <div class="glass-card reveal"
+                    style="padding: 50px 30px; text-align: center; background: rgba(255,255,255,0.1);">
+                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">導入・セミナー依頼</h3>
+                    <p style="margin-bottom: 2.5rem; opacity: 0.9;">コグフレの授業実践や講師派遣、<br>導入に関するお気軽なご相談窓口。</p>
+                    <a href="#" class="btn btn-primary"
+                        style="background: var(--white); color: var(--primary-dark);">お問い合わせフォーム</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section-padding text-center" style="background: #fafafa; border-top: 1px solid #efefef;">
+        <div class="container">
+            <img src="https://edu-net.co.jp/wysiwyg/image/download/1/673/medium" alt="教育ネット"
+                style="height: 40px; opacity: 0.6; margin-bottom: 2rem;">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                &copy; 2026 Education Net Co., Ltd. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Reveal on Scroll
+            const reveals = document.querySelectorAll(".reveal");
+            const revealOnScroll = () => {
+                reveals.forEach(el => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = el.getBoundingClientRect().top;
+                    const elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        el.classList.add("active");
+                    }
+                });
+            };
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll(); // Initial check
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
